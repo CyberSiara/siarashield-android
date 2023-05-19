@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        getApplicationContext().getPackageName()
         CyberActivity.dataPass("kNKLUO9OyUNd4y1azl7TFFH8hI0zyzYh", "jwqIM6PQ8YVfy9HOgQuRjW6OCyX0dAGS",
                 getApplicationContext().getPackageName(), MainActivity.this);
 

@@ -17,6 +17,7 @@ import android.text.TextWatcher;
 import android.text.format.Formatter;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -134,7 +135,8 @@ public class CyberActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Initializing the popup menu and giving the reference as current context
-                PopupMenu popupMenu = new PopupMenu(activity, img_menu);
+                Context wrapper = new ContextThemeWrapper(activity, R.style.popupMenuStyle);
+                PopupMenu popupMenu = new PopupMenu(wrapper, v);
 
                 // Inflating popup menu from popup_menu.xml file
                 popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
