@@ -72,7 +72,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class CyberActivity extends AppCompatActivity {
 
     static SwipeButton swipeButton;
-    static FrameLayout frame, frame_without_active;
+    public static FrameLayout frame, frame_without_active;
     static ImageView img_gif, captcha_image, img_refresh;
     static EditText ed_captcha;
     static AlertDialog alert;
@@ -91,6 +91,7 @@ public class CyberActivity extends AppCompatActivity {
     static int str_timespent = 0;
     static Activity activity;
     static String verify_response = "";
+    public static int time_reset = 30000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -265,6 +266,10 @@ public class CyberActivity extends AppCompatActivity {
     public static String checkVerify(Activity c){
         activity = c;
 
+        swipeButton.setVisibility(View.VISIBLE);
+        l_submit.setVisibility(View.GONE);
+        frame.setVisibility(View.GONE);
+        frame_without_active.setVisibility(View.GONE);
         return verify_response;
     }
 
@@ -273,6 +278,7 @@ public class CyberActivity extends AppCompatActivity {
         AUTH_KEY = auth;
         str_package_name = packageName;
         activity = c;
+        verify_response = "";
 
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View layout = inflater.inflate(R.layout.activity_cybersiara, (ViewGroup) activity.findViewById(R.id.main_layout), true);  // this row
@@ -286,6 +292,11 @@ public class CyberActivity extends AppCompatActivity {
         main_layout = layout.findViewById(R.id.main_layout);
         txt_terms = layout.findViewById(R.id.txt_terms);
         txt_no_auth = layout.findViewById(R.id.txt_no_auth);
+
+        swipeButton.setVisibility(View.VISIBLE);
+        l_submit.setVisibility(View.GONE);
+        frame.setVisibility(View.GONE);
+        frame_without_active.setVisibility(View.GONE);
 
         WifiManager wifiManager = (WifiManager) activity.getApplicationContext().getSystemService(WIFI_SERVICE);
         str_ip = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
@@ -549,7 +560,7 @@ public class CyberActivity extends AppCompatActivity {
                 str_auth = jsobjectcategory.getString("data");
                 if (message.equals("success")){
                     swipeButton.setVisibility(View.GONE);
-                    l_submit.setVisibility(View.VISIBLE);
+                    l_submit.setVisibility(View.GONE);
                     frame_without_active.setVisibility(View.GONE);
                 frame.setVisibility(View.VISIBLE);
                 Glide.with(activity)
@@ -762,6 +773,7 @@ public class CyberActivity extends AppCompatActivity {
                 if (message.equals("success")){
                     alert.dismiss();
                    swipeButton.setVisibility(View.GONE);
+                   l_submit.setVisibility(View.GONE);
                    frame_without_active.setVisibility(View.GONE);
                    frame.setVisibility(View.VISIBLE);
                    Glide.with(activity)

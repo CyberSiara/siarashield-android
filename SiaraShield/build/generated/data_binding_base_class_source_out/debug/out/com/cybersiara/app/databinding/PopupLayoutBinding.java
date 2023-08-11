@@ -6,12 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.cybersiara.app.R;
@@ -21,7 +21,7 @@ import java.lang.String;
 
 public final class PopupLayoutBinding implements ViewBinding {
   @NonNull
-  private final CardView rootView;
+  private final LinearLayout rootView;
 
   @NonNull
   public final EditText edCaptcha;
@@ -42,7 +42,7 @@ public final class PopupLayoutBinding implements ViewBinding {
   public final ImageView imgVisiblity;
 
   @NonNull
-  public final CardView mainLayout;
+  public final LinearLayout mainLayout;
 
   @NonNull
   public final ProgressBar progressCircular;
@@ -56,11 +56,11 @@ public final class PopupLayoutBinding implements ViewBinding {
   @NonNull
   public final TextView txtTerms;
 
-  private PopupLayoutBinding(@NonNull CardView rootView, @NonNull EditText edCaptcha,
+  private PopupLayoutBinding(@NonNull LinearLayout rootView, @NonNull EditText edCaptcha,
       @NonNull ImageView imgCaptcha, @NonNull ImageView imgClose, @NonNull ImageView imgMenu,
-      @NonNull ImageView imgRefresh, @NonNull ImageView imgVisiblity, @NonNull CardView mainLayout,
-      @NonNull ProgressBar progressCircular, @NonNull Spinner spinner2,
-      @NonNull TextView txtPrivacy, @NonNull TextView txtTerms) {
+      @NonNull ImageView imgRefresh, @NonNull ImageView imgVisiblity,
+      @NonNull LinearLayout mainLayout, @NonNull ProgressBar progressCircular,
+      @NonNull Spinner spinner2, @NonNull TextView txtPrivacy, @NonNull TextView txtTerms) {
     this.rootView = rootView;
     this.edCaptcha = edCaptcha;
     this.imgCaptcha = imgCaptcha;
@@ -77,7 +77,7 @@ public final class PopupLayoutBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public CardView getRoot() {
+  public LinearLayout getRoot() {
     return rootView;
   }
 
@@ -138,7 +138,7 @@ public final class PopupLayoutBinding implements ViewBinding {
         break missingId;
       }
 
-      CardView mainLayout = (CardView) rootView;
+      LinearLayout mainLayout = (LinearLayout) rootView;
 
       id = R.id.progress_circular;
       ProgressBar progressCircular = ViewBindings.findChildViewById(rootView, id);
@@ -164,8 +164,9 @@ public final class PopupLayoutBinding implements ViewBinding {
         break missingId;
       }
 
-      return new PopupLayoutBinding((CardView) rootView, edCaptcha, imgCaptcha, imgClose, imgMenu,
-          imgRefresh, imgVisiblity, mainLayout, progressCircular, spinner2, txtPrivacy, txtTerms);
+      return new PopupLayoutBinding((LinearLayout) rootView, edCaptcha, imgCaptcha, imgClose,
+          imgMenu, imgRefresh, imgVisiblity, mainLayout, progressCircular, spinner2, txtPrivacy,
+          txtTerms);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
