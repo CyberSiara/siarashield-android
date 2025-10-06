@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
@@ -15,8 +17,8 @@ import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.Formatter;
+import android.util.Base64;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -34,21 +36,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.cardview.widget.CardView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DecodeFormat;
-import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.Target;
-import com.example.swipebutton_library.OnActiveListener;
-import com.example.swipebutton_library.SwipeButton;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
@@ -71,7 +65,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class CyberActivity extends AppCompatActivity {
 
-    static SwipeButton swipeButton;
+//    static SwipeButton swipeButton;
     public static FrameLayout frame, frame_without_active;
     static ImageView img_gif, captcha_image, img_refresh;
     static EditText ed_captcha;
@@ -81,7 +75,7 @@ public class CyberActivity extends AppCompatActivity {
             str_auth = "", str_protocol = "https", str_device_type = "Android",
             str_device_browser = "chrome", str_second = "8", str_bypass = "Netural", str_flag = "1";
     static CardView card_captcha;
-    public static LinearLayout l_submit;
+//    public static LinearLayout l_submit;
     public static LinearLayout main_layout;
     static TextView txt_privacy, txt_terms, txt_no_auth;
     static String MASTER_URL = "";
@@ -91,7 +85,7 @@ public class CyberActivity extends AppCompatActivity {
     static int str_timespent = 0;
     static Activity activity;
     static String verify_response = "";
-    public static int time_reset = 30000;
+    static Bitmap bitmap_logo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +116,9 @@ public class CyberActivity extends AppCompatActivity {
         TextView txt_terms = (TextView) customLayout.findViewById(R.id.txt_terms);
         ImageView img_visibility = customLayout.findViewById(R.id.img_visiblity);
         ImageView img_menu = customLayout.findViewById(R.id.img_menu);
+        ImageView icon_image = customLayout.findViewById(R.id.icon_image);
+
+        icon_image.setImageBitmap(bitmap_logo);
 
         img_visibility.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -231,8 +228,6 @@ public class CyberActivity extends AppCompatActivity {
             public void onClick(View view) {
                 T.cancel();
                 alert.dismiss();
-                swipeButton.setVisibility(View.VISIBLE);
-                l_submit.setVisibility(View.GONE);
                 frame.setVisibility(View.GONE);
                 frame_without_active.setVisibility(View.GONE);
 
@@ -263,13 +258,13 @@ public class CyberActivity extends AppCompatActivity {
         });
     }
 
-    public static String checkVerify(Activity c){
+    public static String submitData(Activity c){
         activity = c;
-
-        swipeButton.setVisibility(View.VISIBLE);
-        l_submit.setVisibility(View.GONE);
-        frame.setVisibility(View.GONE);
-        frame_without_active.setVisibility(View.GONE);
+        if (ConnectivityDetector.isConnectingToInternet(activity)) {
+            new SubmitCaptcha().execute();
+        } else {
+            Toast.makeText(activity.getApplicationContext(),activity.getResources().getString(R.string.no_internet), Toast.LENGTH_LONG).show();
+        }
         return verify_response;
     }
 
@@ -282,19 +277,15 @@ public class CyberActivity extends AppCompatActivity {
 
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View layout = inflater.inflate(R.layout.activity_cybersiara, (ViewGroup) activity.findViewById(R.id.main_layout), true);  // this row
-        swipeButton = layout.findViewById(R.id.swipe_btn_1);
         txt_privacy = layout.findViewById(R.id.txt_privacy);
         frame = layout.findViewById(R.id.frame_active);
         img_gif = layout.findViewById(R.id.img_gif);
         card_captcha = layout.findViewById(R.id.card_captcha);
         frame_without_active = layout.findViewById(R.id.frame_without_active);
-        l_submit = layout.findViewById(R.id.l_submit);
         main_layout = layout.findViewById(R.id.main_layout);
         txt_terms = layout.findViewById(R.id.txt_terms);
         txt_no_auth = layout.findViewById(R.id.txt_no_auth);
 
-        swipeButton.setVisibility(View.VISIBLE);
-        l_submit.setVisibility(View.GONE);
         frame.setVisibility(View.GONE);
         frame_without_active.setVisibility(View.GONE);
 
@@ -341,20 +332,6 @@ public class CyberActivity extends AppCompatActivity {
             }
         });
 
-        swipeButton.setOnActiveListener(new OnActiveListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public void onActive() {
-                swipeButton.setVisibility(View.GONE);
-                l_submit.setVisibility(View.GONE);
-                frame_without_active.setVisibility(View.VISIBLE);
-                if (ConnectivityDetector.isConnectingToInternet(activity)) {
-                    new SubmitCaptcha().execute();
-                } else {
-                    Toast.makeText(activity.getApplicationContext(),activity.getResources().getString(R.string.no_internet), Toast.LENGTH_LONG).show();
-                }
-            }
-        });
         return verify_response;
     }
 
@@ -467,7 +444,6 @@ public class CyberActivity extends AppCompatActivity {
                 }else{
                     txt_no_auth.setText(message);
                     txt_no_auth.setVisibility(View.VISIBLE);
-                    swipeButton.setVisibility(View.GONE);
                 }
 
             } catch (Exception e) {
@@ -535,10 +511,6 @@ public class CyberActivity extends AppCompatActivity {
                     return new String("false : " + responseCode);
                 }
             } catch (Exception e) {
-                swipeButton.setVisibility(View.VISIBLE);
-                l_submit.setVisibility(View.GONE);
-                frame.setVisibility(View.GONE);
-                frame_without_active.setVisibility(View.GONE);
                 return new String("Exception: " + e.getMessage());
 
             }
@@ -557,24 +529,39 @@ public class CyberActivity extends AppCompatActivity {
                 JSONObject jsobjectcategory = new JSONObject(response);
 
                 String message = jsobjectcategory.getString("Message");
+                String logo = jsobjectcategory.getString("CustomLogo");
                 str_auth = jsobjectcategory.getString("data");
                 if (message.equals("success")){
-                    swipeButton.setVisibility(View.GONE);
-                    l_submit.setVisibility(View.GONE);
-                    frame_without_active.setVisibility(View.GONE);
-                frame.setVisibility(View.VISIBLE);
-                Glide.with(activity)
-                        .load(R.drawable.veri)
-                        .apply(new RequestOptions()
-                                .override(Target.SIZE_ORIGINAL)
-                                .format(DecodeFormat.PREFER_ARGB_8888))
-                        .into(new GifDrawableImageViewTarget(img_gif, 1));
+                    verify_response = "true";
+                    Toast.makeText(activity, "Verified", Toast.LENGTH_LONG).show();
                     if (ConnectivityDetector.isConnectingToInternet(activity)) {
                         new Validatetoken().execute();
                     } else {
                         Toast.makeText(activity.getApplicationContext(),activity.getResources().getString(R.string.no_internet), Toast.LENGTH_LONG).show();
                     }
                 }else if (message.equals("fail")){
+                    verify_response = "false";
+
+                    // show not verified message here
+                    Toast.makeText(activity, "Captcha Not Verified ", Toast.LENGTH_LONG).show();
+
+                    if (logo != null && !logo.isEmpty()) {
+                        try {
+                            // 🔹 Remove prefix first
+                            if (logo.startsWith("data:image")) {
+                                logo = logo.substring(logo.indexOf(",") + 1);
+                            }
+
+                            // 🔹 Decode Base64
+                            byte[] decodedBytes = Base64.decode(logo, Base64.DEFAULT);
+
+                            // 🔹 Convert to Bitmap
+                            bitmap_logo = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
                     showAlertDialog();
                 }
 
@@ -666,10 +653,30 @@ public class CyberActivity extends AppCompatActivity {
 
                 String message = jsobjectcategory.getString("Message");
                 String gif = jsobjectcategory.getString("HtmlFormate");
+                String logo = jsobjectcategory.getString("CustomLogo");
                 if (message.equals("success")){
                     progress.setVisibility(View.GONE);
                     captcha_image.setVisibility(View.VISIBLE);
                     Glide.with(activity).load(gif).into(captcha_image);
+
+                    if (logo != null && !logo.isEmpty()) {
+                        try {
+                            // 🔹 Remove prefix first
+                            if (logo.startsWith("data:image")) {
+                                logo = logo.substring(logo.indexOf(",") + 1);
+                            }
+
+                            // 🔹 Decode Base64
+                            byte[] decodedBytes = Base64.decode(logo, Base64.DEFAULT);
+
+                            // 🔹 Convert to Bitmap
+                            bitmap_logo = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }else{
                 }
 
@@ -772,22 +779,17 @@ public class CyberActivity extends AppCompatActivity {
                 str_auth = jsobjectcategory.getString("data");
                 if (message.equals("success")){
                     alert.dismiss();
-                   swipeButton.setVisibility(View.GONE);
-                   l_submit.setVisibility(View.GONE);
-                   frame_without_active.setVisibility(View.GONE);
-                   frame.setVisibility(View.VISIBLE);
-                   Glide.with(activity)
-                           .load(R.drawable.veri)
-                           .apply(new RequestOptions()
-                                   .override(Target.SIZE_ORIGINAL)
-                                   .format(DecodeFormat.PREFER_ARGB_8888))
-                           .into(new GifDrawableImageViewTarget(img_gif, 1));
+                    verify_response = "true";
+                    Toast.makeText(activity, "Verified", Toast.LENGTH_LONG).show();
                     if (ConnectivityDetector.isConnectingToInternet(activity)) {
                         new Validatetoken().execute();
                     } else {
                         Toast.makeText(activity.getApplicationContext(),activity.getResources().getString(R.string.no_internet), Toast.LENGTH_LONG).show();
                     }
                 }else{
+                    verify_response = "false";
+
+                    Toast.makeText(activity, "Captcha Not Verified", Toast.LENGTH_LONG).show();
                     ed_captcha.setText("");
                     T.cancel();
                     timerstart();

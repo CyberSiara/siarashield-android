@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         app:cardElevation="5dp"
+        android:visibility="gone"
         app:cardCornerRadius="20dp"
         app:cardBackgroundColor="@color/white"
         app:cardUseCompatPadding="true"

@@ -44,7 +44,7 @@
              android:maxLength="15"/>
       </com.google.android.material.textfield.TextInputLayout>
 
-         <include layout="@layout/activity_cybersiara"/>
+<!--         <include layout="@layout/activity_cybersiara"/>-->
 
       <LinearLayout
           android:id="@+id/l_submit_main"
@@ -55,7 +55,7 @@
           android:layout_margin="10dp"
           android:gravity="center|center_horizontal"
           android:layout_gravity="center"
-          android:visibility="gone"
+          android:visibility="visible"
           android:background="@drawable/circular_blue_background">
 
          <TextView

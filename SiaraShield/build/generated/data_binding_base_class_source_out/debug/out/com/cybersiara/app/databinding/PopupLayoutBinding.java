@@ -27,6 +27,9 @@ public final class PopupLayoutBinding implements ViewBinding {
   public final EditText edCaptcha;
 
   @NonNull
+  public final ImageView iconImage;
+
+  @NonNull
   public final ImageView imgCaptcha;
 
   @NonNull
@@ -57,12 +60,13 @@ public final class PopupLayoutBinding implements ViewBinding {
   public final TextView txtTerms;
 
   private PopupLayoutBinding(@NonNull LinearLayout rootView, @NonNull EditText edCaptcha,
-      @NonNull ImageView imgCaptcha, @NonNull ImageView imgClose, @NonNull ImageView imgMenu,
-      @NonNull ImageView imgRefresh, @NonNull ImageView imgVisiblity,
+      @NonNull ImageView iconImage, @NonNull ImageView imgCaptcha, @NonNull ImageView imgClose,
+      @NonNull ImageView imgMenu, @NonNull ImageView imgRefresh, @NonNull ImageView imgVisiblity,
       @NonNull LinearLayout mainLayout, @NonNull ProgressBar progressCircular,
       @NonNull Spinner spinner2, @NonNull TextView txtPrivacy, @NonNull TextView txtTerms) {
     this.rootView = rootView;
     this.edCaptcha = edCaptcha;
+    this.iconImage = iconImage;
     this.imgCaptcha = imgCaptcha;
     this.imgClose = imgClose;
     this.imgMenu = imgMenu;
@@ -105,6 +109,12 @@ public final class PopupLayoutBinding implements ViewBinding {
       id = R.id.ed_captcha;
       EditText edCaptcha = ViewBindings.findChildViewById(rootView, id);
       if (edCaptcha == null) {
+        break missingId;
+      }
+
+      id = R.id.icon_image;
+      ImageView iconImage = ViewBindings.findChildViewById(rootView, id);
+      if (iconImage == null) {
         break missingId;
       }
 
@@ -164,9 +174,9 @@ public final class PopupLayoutBinding implements ViewBinding {
         break missingId;
       }
 
-      return new PopupLayoutBinding((LinearLayout) rootView, edCaptcha, imgCaptcha, imgClose,
-          imgMenu, imgRefresh, imgVisiblity, mainLayout, progressCircular, spinner2, txtPrivacy,
-          txtTerms);
+      return new PopupLayoutBinding((LinearLayout) rootView, edCaptcha, iconImage, imgCaptcha,
+          imgClose, imgMenu, imgRefresh, imgVisiblity, mainLayout, progressCircular, spinner2,
+          txtPrivacy, txtTerms);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -32,49 +32,23 @@ public class MainActivity extends AppCompatActivity {
         l_main_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String verify = CyberActivity.checkVerify(MainActivity.this);
-                if (verify.equals("true")){
-                    Toast.makeText(getApplicationContext(), "Verified", Toast.LENGTH_LONG).show();
+                String verify = CyberActivity.submitData(MainActivity.this);
+                if (verify.equals("")){
+
+                }
+                else if (verify.equals("true")){
                     reset();
                 }else {
-                    Toast.makeText(getApplicationContext(), "Captcha Not Verified", Toast.LENGTH_LONG).show();
                 }
             }
         });
 
         reset();
 
-        CyberActivity.frame.setTag(CyberActivity.frame.getVisibility());
-        CyberActivity.frame.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                int newVis = CyberActivity.frame.getVisibility();
-                if((int)CyberActivity.frame.getTag() != newVis)
-                {
-                    CyberActivity.frame.setTag(CyberActivity.frame.getVisibility());
-                    if (CyberActivity.frame.getVisibility() == View.VISIBLE){
-                        l_main_submit.setVisibility(View.VISIBLE);
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                reset();
-                                l_main_submit.setVisibility(View.GONE);
-                            }
-                        }, CyberActivity.time_reset);
-                    }else{
-                        if (handler != null){
-                            handler.removeCallbacksAndMessages(null);
-                        }
-                        l_main_submit.setVisibility(View.GONE);
-                    }
-                }
-            }
-        });
-
     }
 
     private void reset() {
-        CyberActivity.dataPass("kNKLUO9OyUNd4y1azl7TFFH8hI0zyzYh", "jwqIM6PQ8YVfy9HOgQuRjW6OCyX0dAGS",
+        CyberActivity.dataPass("Iq2XWnxk2v8fyzv9Qz71JPXMdUNsRPMk", "YNIKcMM9O9NxfOAaXXEl193WV5FTgQxl",
                 "com.cybersiara.app", MainActivity.this);
     }
 }
