@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
                     reset();
                 }else {
                 }
+                
             }
         });
 
