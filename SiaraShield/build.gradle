@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.library'
+    id 'maven-publish'
 }
 
 android {
@@ -43,4 +44,19 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.15.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.15.0'
     implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            create("release", MavenPublication) {
+                // Publish the Android library release variant
+                from components.findByName("release")
+
+                groupId = 'com.github.CyberSiara'
+                artifactId = 'siarashield-android'
+                version = '1.4'
+            }
+        }
+    }
 }
