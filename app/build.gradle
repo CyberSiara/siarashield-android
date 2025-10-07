@@ -40,4 +40,5 @@ dependencies {
     implementation 'com.github.mhdmoh:swipe-button:1.0.2'
     implementation 'com.github.bumptech.glide:glide:4.15.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.15.0'
+    implementation 'com.github.CyberSiara:siarashield-android:1.7'
 }
