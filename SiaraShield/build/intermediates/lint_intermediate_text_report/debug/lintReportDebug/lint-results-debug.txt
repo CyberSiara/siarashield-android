@@ -1,0 +1,500 @@
+/Users/apple/siarashield-android/SiaraShield/build.gradle:12: Warning: Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details. [OldTargetApi]
+        targetSdk 35
+        ~~~~~~~~~~~~
+
+   Explanation for issues of type "OldTargetApi":
+   When your application runs on a version of Android that is more recent than
+   your targetSdkVersion specifies that it has been tested with, various
+   compatibility modes kick in. This ensures that your application continues
+   to work, but it may look out of place. For example, if the targetSdkVersion
+   is less than 14, your app may get an option button in the UI.
+
+   To fix this issue, set the targetSdkVersion to the highest available value.
+   Then test your app to make sure everything works correctly. You may want to
+   consult the compatibility notes to see what changes apply to each version
+   you are adding support for:
+   https://developer.android.com/reference/android/os/Build.VERSION_CODES.html
+   as well as follow this guide:
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.
+   html
+
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.html
+
+/Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml:13: Warning: Attribute usesCleartextTraffic is only used in API level 23 and higher (current min is 21) [UnusedAttribute]
+        android:usesCleartextTraffic="true"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedAttribute":
+   This check finds attributes set in XML files that were introduced in a
+   version newer than the oldest version targeted by your application (with
+   the minSdkVersion attribute).
+
+   This is not an error; the application will simply ignore the attribute.
+   However, if the attribute is important to the appearance or functionality
+   of your application, you should consider finding an alternative way to
+   achieve the same result with only available attributes, and then you can
+   optionally create a copy of the layout in a layout-vNN folder which will be
+   used on API NN or higher where you can take advantage of the newer
+   attribute.
+
+   Note: This check does not only apply to attributes. For example, some tags
+   can be unused too, such as the new <tag> element in layouts introduced in
+   API 21.
+
+/Users/apple/siarashield-android/SiaraShield/build.gradle:35: Warning: A newer version of androidx.appcompat:appcompat than 1.6.1 is available: 1.7.1 [GradleDependency]
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/build.gradle:36: Warning: A newer version of com.google.android.material:material than 1.8.0 is available: 1.13.0 [GradleDependency]
+    implementation 'com.google.android.material:material:1.8.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/build.gradle:37: Warning: A newer version of androidx.constraintlayout:constraintlayout than 2.1.4 is available: 2.2.1 [GradleDependency]
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/build.gradle:40: Warning: A newer version of androidx.test.ext:junit than 1.1.5 is available: 1.3.0 [GradleDependency]
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/build.gradle:41: Warning: A newer version of androidx.test.espresso:espresso-core than 3.5.1 is available: 3.7.0 [GradleDependency]
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/build.gradle:44: Warning: A newer version of com.github.bumptech.glide:glide than 4.15.0 is available: 4.15.1 [GradleDependency]
+    implementation 'com.github.bumptech.glide:glide:4.15.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/build.gradle:45: Warning: A newer version of com.github.bumptech.glide:compiler than 4.15.0 is available: 4.15.1 [GradleDependency]
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.15.0'
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/build.gradle:46: Warning: A newer version of com.squareup.okhttp3:okhttp than 4.12.0 is available: 5.1.0 [GradleDependency]
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "GradleDependency":
+   This detector looks for usages of libraries where the version you are using
+   is not the current stable release. Using older versions is fine, and there
+   are cases where you deliberately want to stick with an older version.
+   However, you may simply not be aware that a more recent version is
+   available, and that is what this lint check helps find.
+
+/Users/apple/siarashield-android/SiaraShield/src/main/java/com/cybersiara/app/CyberActivity.java:341: Warning: Use of scheduleAtFixedRate is strongly discouraged because it can lead to unexpected behavior when Android processes become cached (tasks may unexpectedly execute hundreds or thousands of times in quick succession when a process changes from cached to uncached); prefer using schedule [DiscouragedApi]
+        T.scheduleAtFixedRate(new TimerTask() {
+        ^
+
+   Explanation for issues of type "DiscouragedApi":
+   Discouraged APIs are allowed and are not deprecated, but they may be unfit
+   for common use (e.g. due to slow performance or subtle behavior).
+
+/Users/apple/siarashield-android/SiaraShield/src/main/java/com/cybersiara/app/CyberActivity.java:295: Warning: Using getString to get device identifiers is not recommended [HardwareIds]
+        str_id = Settings.Secure.getString(activity.getContentResolver(),
+                 ^
+
+   Explanation for issues of type "HardwareIds":
+   Using these device identifiers is not recommended other than for high value
+   fraud prevention and advanced telephony use-cases. For advertising
+   use-cases, use AdvertisingIdClient$Info#getId and for analytics, use
+   InstanceId#getId.
+
+   https://developer.android.com/training/articles/user-data-ids.html
+
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:123: Warning: Invalid layout param in a LinearLayout: layout_centerHorizontal [ObsoleteLayoutParam]
+                    android:layout_centerHorizontal="true"/>
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "ObsoleteLayoutParam":
+   The given layout_param is not defined for the given layout, meaning it has
+   no effect. This usually happens when you change the parent layout or move
+   view code around without updating the layout params. This will cause
+   useless attribute processing at runtime, and is misleading for others
+   reading the layout so the parameter should be removed.
+
+/Users/apple/siarashield-android/SiaraShield/src/main/res/values/themes.xml:11: Warning: Unnecessary; SDK_INT is always >= 21 [ObsoleteSdkInt]
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+                                            ~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "ObsoleteSdkInt":
+   This check flags version checks that are not necessary, because the
+   minSdkVersion (or surrounding known API level) is already at least as high
+   as the version checked for.
+
+   Similarly, it also looks for resources in -vNN folders, such as values-v14
+   where the version qualifier is less than or equal to the minSdkVersion,
+   where the contents should be merged into the best folder.
+
+/Users/apple/siarashield-android/SiaraShield/src/main/java/com/cybersiara/app/CyberActivity.java:69: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+    public static FrameLayout frame, frame_without_active;
+           ~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/java/com/cybersiara/app/CyberActivity.java:69: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+    public static FrameLayout frame, frame_without_active;
+           ~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/java/com/cybersiara/app/CyberActivity.java:70: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+    static ImageView img_gif, captcha_image, img_refresh;
+    ~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/java/com/cybersiara/app/CyberActivity.java:70: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+    static ImageView img_gif, captcha_image, img_refresh;
+    ~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/java/com/cybersiara/app/CyberActivity.java:70: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+    static ImageView img_gif, captcha_image, img_refresh;
+    ~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/java/com/cybersiara/app/CyberActivity.java:71: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+    static EditText ed_captcha;
+    ~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/java/com/cybersiara/app/CyberActivity.java:73: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+    static ProgressBar progress;
+    ~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/java/com/cybersiara/app/CyberActivity.java:79: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+    public static LinearLayout main_layout;
+           ~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/java/com/cybersiara/app/CyberActivity.java:80: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+    static TextView txt_privacy, txt_terms, txt_no_auth;
+    ~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/java/com/cybersiara/app/CyberActivity.java:80: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+    static TextView txt_privacy, txt_terms, txt_no_auth;
+    ~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/java/com/cybersiara/app/CyberActivity.java:80: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+    static TextView txt_privacy, txt_terms, txt_no_auth;
+    ~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/java/com/cybersiara/app/CyberActivity.java:86: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+    static Activity activity;
+    ~~~~~~
+
+   Explanation for issues of type "StaticFieldLeak":
+   A static field will leak contexts.
+
+   Non-static inner classes have an implicit reference to their outer class.
+   If that outer class is for example a Fragment or Activity, then this
+   reference means that the long-running handler/loader/task will hold a
+   reference to the activity which prevents it from getting garbage
+   collected.
+
+   Similarly, direct field references to activities and fragments from these
+   longer running instances can cause leaks.
+
+   ViewModel classes should never point to Views or non-application Contexts.
+
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:228: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+            <LinearLayout
+             ~~~~~~~~~~~~
+
+   Explanation for issues of type "UseCompoundDrawables":
+   A LinearLayout which contains an ImageView and a TextView can be more
+   efficiently handled as a compound drawable (a single TextView, using the
+   drawableTop, drawableLeft, drawableRight and/or drawableBottom attributes
+   to draw one or more images adjacent to the text).
+
+   If the two widgets are offset from each other with margins, this can be
+   replaced with a drawablePadding attribute.
+
+   There's a lint quickfix to perform this conversion in the Eclipse plugin.
+
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/activity_cybersiara.xml:25: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+        <LinearLayout
+         ~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:18: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+        <LinearLayout
+         ~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:104: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+        <LinearLayout
+         ~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:155: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+        <LinearLayout
+         ~~~~~~~~~~~~
+
+   Explanation for issues of type "DisableBaselineAlignment":
+   When a LinearLayout is used to distribute the space proportionally between
+   nested layouts, the baseline alignment property should be turned off to
+   make the layout computation faster.
+
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/activity_cybersiara.xml:45: Warning: Nested weights are bad for performance [NestedWeights]
+                    android:layout_weight="0.8"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/activity_cybersiara.xml:181: Warning: Nested weights are bad for performance [NestedWeights]
+                android:layout_weight="0.8"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "NestedWeights":
+   Layout weights require a widget to be measured twice. When a LinearLayout
+   with non-zero weights is nested inside another LinearLayout with non-zero
+   weights, then the number of measurements increase exponentially.
+
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:37: Warning: This LinearLayout view is unnecessary (no children, no background, no id, no style) [UselessLeaf]
+            <LinearLayout
+             ~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:134: Warning: This LinearLayout view is unnecessary (no children, no background, no id, no style) [UselessLeaf]
+            <LinearLayout
+             ~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:192: Warning: This LinearLayout view is unnecessary (no children, no background, no id, no style) [UselessLeaf]
+            <LinearLayout
+             ~~~~~~~~~~~~
+
+   Explanation for issues of type "UselessLeaf":
+   A layout that has no children or no background can often be removed (since
+   it is invisible) for a flatter and more efficient layout hierarchy.
+
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:12: Warning: This LinearLayout layout or its LinearLayout parent is unnecessary [UselessParent]
+    <LinearLayout
+     ~~~~~~~~~~~~
+
+   Explanation for issues of type "UselessParent":
+   A layout with children that has no siblings, is not a scrollview or a root
+   layout, and does not have a background, can be removed and have its
+   children moved directly into the parent for a flatter and more efficient
+   layout hierarchy.
+
+/Users/apple/siarashield-android/SiaraShield/src/main/res/values/strings.xml:10: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="please_wait">Please Wait...</string>
+                               ~~~~~~~~~~~~~~
+
+   Explanation for issues of type "TypographyEllipsis":
+   You can replace the string "..." with a dedicated ellipsis character,
+   ellipsis character (u2026, &#8230;). This can help make the text more
+   readable.
+
+   https://en.wikipedia.org/wiki/Ellipsis
+
+/Users/apple/siarashield-android/SiaraShield/src/main/res/mipmap-anydpi-v26/ic_launcher.xml:2: Warning: The application adaptive icon is missing a monochrome tag [MonochromeLauncherIcon]
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+^
+/Users/apple/siarashield-android/SiaraShield/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml:2: Warning: The application adaptive roundIcon is missing a monochrome tag [MonochromeLauncherIcon]
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+^
+
+   Explanation for issues of type "MonochromeLauncherIcon":
+   If android:roundIcon and android:icon are both in your manifest, you must
+   either remove the reference to android:roundIcon if it is not needed; or,
+   supply the monochrome icon in the drawable defined by the android:roundIcon
+   and android:icon attribute.
+
+   For example, if android:roundIcon and android:icon are both in the
+   manifest, a launcher might choose to use android:roundIcon over
+   android:icon to display the adaptive app icon. Therefore, your themed
+   application iconwill not show if your monochrome attribute is not also
+   specified in android:roundIcon.
+
+/Users/apple/siarashield-android/SiaraShield/src/main/res/drawable/captcha_gif.gif: Warning: Using the .gif format for bitmaps is discouraged [GifUsage]
+/Users/apple/siarashield-android/SiaraShield/src/main/res/drawable/ver.gif: Warning: Using the .gif format for bitmaps is discouraged [GifUsage]
+/Users/apple/siarashield-android/SiaraShield/src/main/res/drawable/veri.gif: Warning: Using the .gif format for bitmaps is discouraged [GifUsage]
+/Users/apple/siarashield-android/SiaraShield/src/main/res/drawable/verified.gif: Warning: Using the .gif format for bitmaps is discouraged [GifUsage]
+
+   Explanation for issues of type "GifUsage":
+   The .gif file format is discouraged. Consider using .png (preferred) or
+   .jpg (acceptable) instead.
+
+   https://developer.android.com/guide/topics/resources/drawable-resource.html#Bitmap
+
+/Users/apple/siarashield-android/SiaraShield/src/main/res/drawable/arrow_stroke.png: Warning: Found bitmap drawable res/drawable/arrow_stroke.png in densityless folder [IconLocation]
+/Users/apple/siarashield-android/SiaraShield/src/main/res/drawable/captcha_gif.gif: Warning: Found bitmap drawable res/drawable/captcha_gif.gif in densityless folder [IconLocation]
+/Users/apple/siarashield-android/SiaraShield/src/main/res/drawable/logo_icon.png: Warning: Found bitmap drawable res/drawable/logo_icon.png in densityless folder [IconLocation]
+/Users/apple/siarashield-android/SiaraShield/src/main/res/drawable/ver.gif: Warning: Found bitmap drawable res/drawable/ver.gif in densityless folder [IconLocation]
+/Users/apple/siarashield-android/SiaraShield/src/main/res/drawable/veri.gif: Warning: Found bitmap drawable res/drawable/veri.gif in densityless folder [IconLocation]
+/Users/apple/siarashield-android/SiaraShield/src/main/res/drawable/verified.gif: Warning: Found bitmap drawable res/drawable/verified.gif in densityless folder [IconLocation]
+/Users/apple/siarashield-android/SiaraShield/src/main/res/drawable/white_arrow.png: Warning: Found bitmap drawable res/drawable/white_arrow.png in densityless folder [IconLocation]
+
+   Explanation for issues of type "IconLocation":
+   The res/drawable folder is intended for density-independent graphics such
+   as shapes defined in XML. For bitmaps, move it to drawable-mdpi and
+   consider providing higher and lower resolution versions in drawable-ldpi,
+   drawable-hdpi and drawable-xhdpi. If the icon really is density independent
+   (for example a solid color) you can place it in drawable-nodpi.
+
+   https://developer.android.com/guide/practices/screens_support.html
+
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:167: Warning: This text field does not specify an inputType [TextFields]
+                <EditText
+                 ~~~~~~~~
+
+   Explanation for issues of type "TextFields":
+   Providing an inputType attribute on a text field improves usability because
+   depending on the data to be input, optimized keyboards can be shown to the
+   user (such as just digits and parentheses for a phone number). 
+
+   The lint detector also looks at the id of the view, and if the id offers a
+   hint of the purpose of the field (for example, the id contains the phrase
+   phone or email), then lint will also ensure that the inputType contains the
+   corresponding type attributes.
+
+   If you really want to keep the text field generic, you can suppress this
+   warning by setting inputType="text".
+
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/activity_cybersiara.xml:162: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+                        android:textSize="10sp"
+                        ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/activity_cybersiara.xml:209: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+                    android:textSize="10sp"/>
+                    ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/activity_cybersiara.xml:222: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+                    android:textSize="10sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:185: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+                    android:textSize="10sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:262: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+                    android:textSize="10sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:278: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+                    android:textSize="10sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "SmallSp":
+   Avoid using sizes smaller than 11sp.
+
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:167: Warning: Missing autofillHints attribute [Autofill]
+                <EditText
+                 ~~~~~~~~
+
+   Explanation for issues of type "Autofill":
+   Specify an autofillHints attribute when targeting SDK version 26 or higher
+   or explicitly specify that the view is not important for autofill. Your app
+   can help an autofill service classify the data correctly by providing the
+   meaning of each view that could be autofillable, such as views representing
+   usernames, passwords, credit card fields, email addresses, etc.
+
+   The hints can have any value, but it is recommended to use predefined
+   values like 'username' for a username or 'creditCardNumber' for a credit
+   card number. For a list of all predefined autofill hint constants, see the
+   AUTOFILL_HINT_ constants in the View reference at
+   https://developer.android.com/reference/android/view/View.html.
+
+   You can mark a view unimportant for autofill by specifying an
+   importantForAutofill attribute on that view or a parent view. See
+   https://developer.android.com/reference/android/view/View.html#setImportant
+   ForAutofill(int).
+
+   https://developer.android.com/guide/topics/text/autofill.html
+
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/activity_cybersiara.xml:138: Warning: Missing contentDescription attribute on image [ContentDescription]
+                            <ImageView
+                             ~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/activity_cybersiara.xml:184: Warning: Missing contentDescription attribute on image [ContentDescription]
+            <ImageView
+             ~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:29: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:48: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:85: Warning: Missing contentDescription attribute on image [ContentDescription]
+            <ImageView
+             ~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:125: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:145: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:204: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:210: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:241: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+
+   Explanation for issues of type "ContentDescription":
+   Non-textual widgets like ImageViews and ImageButtons should use the
+   contentDescription attribute to specify a textual description of the widget
+   such that screen readers and other accessibility tools can adequately
+   describe the user interface.
+
+   Note that elements in application screens that are purely decorative and do
+   not provide any content or enable a user action should not have
+   accessibility content descriptions. In this case, set their descriptions to
+   @null. If your app's minSdkVersion is 16 or higher, you can instead set
+   these graphical elements' android:importantForAccessibility attributes to
+   no.
+
+   Note that for text fields, you should not set both the hint and the
+   contentDescription attributes since the hint will never be shown. Just set
+   the hint.
+
+   https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases
+
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:167: Warning: Missing accessibility label: provide either a view with an android:labelFor that references this view or provide an android:hint [LabelFor]
+                <EditText
+                 ~~~~~~~~
+
+   Explanation for issues of type "LabelFor":
+   Editable text fields should provide an android:hint or, provided your
+   minSdkVersion is at least 17, they may be referenced by a view with a
+   android:labelFor attribute.
+
+   When using android:labelFor, be sure to provide an android:text or an
+   android:contentDescription.
+
+   If your view is labeled but by a label in a different layout which includes
+   this one, just suppress this warning from lint.
+
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:268: Warning: Hardcoded string "-", should use @string resource [HardcodedText]
+                    android:text="-"
+                    ~~~~~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/spinner_text.xml:13: Warning: Hardcoded string "test", should use @string resource [HardcodedText]
+    android:text="test"/>
+    ~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "HardcodedText":
+   Hardcoding text attributes directly in layout files is bad for several
+   reasons:
+
+   * When creating configuration variations (for example for landscape or
+   portrait) you have to repeat the actual text (and keep it up to date when
+   making changes)
+
+   * The application cannot be translated to other languages by just adding
+   new translations for existing string resources.
+
+   There are quickfixes to automatically extract this hardcoded string into a
+   resource lookup.
+
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/spinner_text.xml:10: Warning: When you define paddingLeft you should probably also define paddingRight for right-to-left symmetry [RtlSymmetry]
+    android:paddingLeft="2dp"
+    ~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "RtlSymmetry":
+   If you specify padding or margin on the left side of a layout, you should
+   probably also specify padding on the right side (and vice versa) for
+   right-to-left layout symmetry.
+
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/activity_cybersiara.xml:198: Warning: Consider replacing android:layout_marginLeft with android:layout_marginStart="3dp" to better support right-to-left layouts [RtlHardcoded]
+                android:layout_marginLeft="3dp">
+                ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:83: Warning: Consider replacing android:layout_marginLeft with android:layout_marginStart="5dp" to better support right-to-left layouts [RtlHardcoded]
+                android:layout_marginLeft="5dp"/>
+                ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:88: Warning: Consider replacing android:layout_alignParentRight with android:layout_alignParentEnd="true" to better support right-to-left layouts [RtlHardcoded]
+                android:layout_alignParentRight="true"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:91: Warning: Consider replacing android:layout_marginRight with android:layout_marginEnd="10dp" to better support right-to-left layouts [RtlHardcoded]
+                android:layout_marginRight="10dp"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:186: Warning: Consider replacing android:layout_marginLeft with android:layout_marginStart="5dp" to better support right-to-left layouts [RtlHardcoded]
+                    android:layout_marginLeft="5dp"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:215: Warning: Consider replacing android:layout_marginLeft with android:layout_marginStart="10dp" to better support right-to-left layouts [RtlHardcoded]
+                    android:layout_marginLeft="10dp"/>
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/popup_layout.xml:245: Warning: Consider replacing android:layout_marginLeft with android:layout_marginStart="5dp" to better support right-to-left layouts [RtlHardcoded]
+                    android:layout_marginLeft="5dp"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/apple/siarashield-android/SiaraShield/src/main/res/layout/spinner_text.xml:10: Warning: Consider replacing android:paddingLeft with android:paddingStart="2dp" to better support right-to-left layouts [RtlHardcoded]
+    android:paddingLeft="2dp"
+    ~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "RtlHardcoded":
+   Using Gravity#LEFT and Gravity#RIGHT can lead to problems when a layout is
+   rendered in locales where text flows from right to left. Use Gravity#START
+   and Gravity#END instead. Similarly, in XML gravity and layout_gravity
+   attributes, use start rather than left.
+
+   For XML attributes such as paddingLeft and layout_marginLeft, use
+   paddingStart and layout_marginStart. NOTE: If your minSdkVersion is less
+   than 17, you should add both the older left/right attributes as well as the
+   new start/end attributes. On older platforms, where RTL is not supported
+   and the start/end attributes are unknown and therefore ignored, you need
+   the older left/right attributes. There is a separate lint check which
+   catches that type of error.
+
+   (Note: For Gravity#LEFT and Gravity#START, you can use these constants even
+   when targeting older platforms, because the start bitmask is a superset of
+   the left bitmask. Therefore, you can use gravity="start" rather than
+   gravity="left|start".)
+
+0 errors, 81 warnings

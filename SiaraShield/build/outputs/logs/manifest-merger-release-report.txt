@@ -1,0 +1,48 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml:2:1-23:12
+INJECTED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml:2:1-23:12
+	package
+		INJECTED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml:5:5-66
+	android:name
+		ADDED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml:5:22-64
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml:6:5-75
+	android:name
+		ADDED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml:6:22-73
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml:7:5-78
+	android:name
+		ADDED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml:7:22-76
+application
+ADDED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml:9:5-21:19
+	android:supportsRtl
+		ADDED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml:15:9-35
+	android:label
+		ADDED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml:12:9-41
+	android:roundIcon
+		ADDED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml:14:9-54
+	android:icon
+		ADDED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml:11:9-43
+	android:allowBackup
+		ADDED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml:10:9-35
+	android:usesCleartextTraffic
+		ADDED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml:13:9-44
+activity#com.cybersiara.app.CyberActivity
+ADDED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml:16:9-20:20
+	android:exported
+		ADDED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml:18:13-36
+	android:name
+		ADDED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml:17:13-42
+uses-sdk
+INJECTED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml
+INJECTED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/apple/siarashield-android/SiaraShield/src/main/AndroidManifest.xml

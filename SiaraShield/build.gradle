@@ -46,17 +46,17 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.12.0'
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            create("release", MavenPublication) {
-                // Publish the Android library release variant
-                from components.findByName("release")
-
-                groupId = 'com.github.CyberSiara'
-                artifactId = 'siarashield-android'
-                version = '1.5'
-            }
-        }
-    }
-}
+//afterEvaluate {
+//    publishing {
+//        publications {
+//            create("release", MavenPublication) {
+//                // Publish the Android library release variant
+//                from components.findByName("release")
+//
+//                groupId = 'com.github.CyberSiara'
+//                artifactId = 'siarashield-android'
+//                version = '1.5'
+//            }
+//        }
+//    }
+//}
