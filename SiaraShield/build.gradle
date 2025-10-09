@@ -56,6 +56,27 @@ afterEvaluate {
                 groupId = 'com.github.CyberSiara'
                 artifactId = 'siarashield-android'
                 version = '1.4'
+                
+                // Add POM metadata for better JitPack compatibility
+                pom {
+                    name = 'SiaraShield Android'
+                    description = 'Android library for SiaraShield cyber security features'
+                    url = 'https://github.com/CyberSiara/siarashield-android'
+                    
+                    licenses {
+                        license {
+                            name = 'MIT License'
+                            url = 'https://opensource.org/licenses/MIT'
+                        }
+                    }
+                    
+                    developers {
+                        developer {
+                            id = 'CyberSiara'
+                            name = 'CyberSiara Team'
+                        }
+                    }
+                }
             }
         }
     }
