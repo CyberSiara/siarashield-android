@@ -1,4 +1,8 @@
 jdk:
   - openjdk17
+# Run from repo root so Gradle can see settings.gradle and wrapper
 before_install:
-  - cd SiaraShield
+  - ./gradlew -v
+# Publish only the library module to Maven Local for JitPack
+install:
+  - ./gradlew -Pgroup=com.github.CyberSiara -Pversion=$VERSION :SiaraShield:publishReleasePublicationToMavenLocal
